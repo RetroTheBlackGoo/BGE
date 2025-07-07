@@ -1,0 +1,7 @@
+name: BGE
+version: 'v0.0.1-1.21.6'
+main: us.mudkip989.plugins.bge.BGE
+api-version: '1.21'
+prefix: BGE
+authors: [ mudkip989 ]
+description: A full Remake of Card Game Engine designed with more polish in mind
