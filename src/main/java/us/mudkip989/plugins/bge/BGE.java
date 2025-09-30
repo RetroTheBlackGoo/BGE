@@ -4,9 +4,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BGE extends JavaPlugin {
 
+    public static BGE instance;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
+        instance = this;
 
     }
 
