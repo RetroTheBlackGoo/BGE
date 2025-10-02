@@ -2,13 +2,14 @@ package us.mudkip989.plugins.bge.game.object;
 
 import org.bukkit.*;
 import org.bukkit.util.*;
+import org.joml.*;
 import us.mudkip989.plugins.bge.game.object.enums.*;
 
 import java.util.*;
 
 public abstract class Object {
     private Location location;
-    private Transformation transform;
+    private Matrix4f transform;
     private Object parent;
     private List<Object> children;
 
@@ -49,7 +50,23 @@ public abstract class Object {
 
     }
 
-    public Transformation getWorldSpaceTransform(){
+    public Matrix4f getWorldSpaceTransform(){
+        Matrix4f ptran;
+        if(parent != null) {
+            ptran = parent.getWorldSpaceTransform();
+        } else {
+            ptran = new Matrix4f().scale(1);
+        }
+        Vector3f translation = new Vector3f();
+        Vector3f scale = new Vector3f();
+        AxisAngle4f rotation = new AxisAngle4f();
+
+        transform.getTranslation(translation);
+        transform.getScale(scale);
+        transform.getRotation(rotation);
+
+
+
         return null;
     }
 
@@ -59,8 +76,10 @@ public abstract class Object {
 
     public void update() {
 
+        //Pull info apply to this
     }
-    public void update(Location loc, Transformation trans){
 
+    public void update(Location loc, Transformation trans){
+        //parent force updating this
     }
 }
