@@ -8,50 +8,14 @@ import us.mudkip989.plugins.bge.game.object.enums.*;
 import java.util.*;
 
 public abstract class Object {
-    private Location location;
     private Matrix4f transform;
     private Object parent;
     private List<Object> children;
 
-    /*
-    ----------
-    Possible Transform/Teleport Combos
-
-     - Parent Only
-     - Parent and Children(Recursive)
-
-     */
-
-//    public void teleport(Location loc){
-//        switch(teleportMode){
-//            case WORLD -> {
-//                location = loc;
-//            }
-//            case PARENT -> {
-//                if (parent == null) {
-//                    location = loc;
-//                } else {
-//                    location = parent.getLocation().add(loc.toVector());
-//                }
-//
-//            }
-//            case LOCAL -> {
-//
-//            }
-//        }
-//
-//        if(children != null){
-//            children.forEach((ob) -> {if (ob.teleportMode == TeleportMode.PARENT) ob.update();});
-//        }
-//    }
-
-
-    public Location getLocation() {return location.clone();
-
-    }
 
     public Matrix4f getWorldSpaceTransform(){
         Matrix4f ptran;
+        Matrix4f localtran = new Matrix4f();
         if(parent != null) {
             ptran = parent.getWorldSpaceTransform();
         } else {
@@ -65,12 +29,10 @@ public abstract class Object {
         transform.getScale(scale);
         transform.getRotation(rotation);
 
+        localtran.translate(transform.getTranslation(new Vector3f()));
+        localtran.rotation(transform.getRotation(new AxisAngle4f()));
 
 
-        return null;
-    }
-
-    public Location getWorldSpaceLocation() {
         return null;
     }
 
