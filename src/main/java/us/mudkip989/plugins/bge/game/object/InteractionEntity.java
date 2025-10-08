@@ -10,7 +10,7 @@ public class InteractionEntity extends Object{
     private Interaction entity;
 
     public InteractionEntity(Location loc, float width, float height) {
-        super(new Matrix4f());
+        super(new Matrix4f(), loc.getWorld());
         entity = (Interaction) loc.getWorld().spawnEntity(loc, EntityType.INTERACTION);
         entity.setInteractionHeight(height);
         entity.setInteractionWidth(width);

@@ -9,18 +9,20 @@ import java.util.*;
 
 public abstract class Object {
     private Matrix4f transform;
+    private World world;
     private Object parent;
     private List<Object> children;
     protected UUID uuid;
 
-    public Object(Matrix4f location){
+    public Object(Matrix4f location, World w) {
         parent = null;
         transform = location;
         uuid = UUID.randomUUID();
         children = new ArrayList<>();
+        world = w;
     }
 
-    public Object(Matrix4f location, Object obj){
+    public Object(Matrix4f location, World w, Object obj) {
         if (obj != null){
             parent = obj;
             parent.addChild(this);
@@ -28,12 +30,13 @@ public abstract class Object {
         transform = location;
         uuid = UUID.randomUUID();
         children = new ArrayList<>();
+        world = w;
     }
 
 
 
     //Grab Transform from parent and apply to current
-    public Matrix4f getWorldSpaceTransform(){
+    public Matrix4f getWorldSpaceTransform() {
         Matrix4f ptran;
         Matrix4f localtran = new Matrix4f();
         if(parent != null) {
@@ -60,6 +63,11 @@ public abstract class Object {
 
     public abstract void teleport(Matrix4f trans);
 
+    public void delete() {
+        setParent(null);
+        children.forEach(Object::delete);
+    }
+
     public void update() {
         Matrix4f trans = getWorldSpaceTransform();
         teleport(trans);
@@ -67,14 +75,14 @@ public abstract class Object {
         //Pull info apply to this
     }
 
-    public void update(Matrix4f trans){
+    public void update(Matrix4f trans) {
 
         teleport(trans);
         children.forEach(child -> child.update(trans));
         //parent force updating this
     }
 
-    public void setParent(Object obj){
+    public void setParent(Object obj) {
         if(parent != null){
             parent.removeChild(this);
         }
@@ -85,13 +93,13 @@ public abstract class Object {
         }
     }
 
-    protected void addChild(Object obj){
+    protected void addChild(Object obj) {
         if(obj != null) {
             children.add(obj);
         }
     }
 
-    protected void removeChild(Object obj){
+    protected void removeChild(Object obj) {
         if(obj != null) {
             children.remove(obj);
         }
