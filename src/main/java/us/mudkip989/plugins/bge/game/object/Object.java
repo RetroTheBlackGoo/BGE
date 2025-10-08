@@ -19,6 +19,7 @@ public abstract class Object {
         uuid = UUID.randomUUID();
         children = new ArrayList<>();
     }
+
     public Object(Matrix4f location, Object obj){
         if (obj != null){
             parent = obj;
@@ -28,6 +29,8 @@ public abstract class Object {
         uuid = UUID.randomUUID();
         children = new ArrayList<>();
     }
+
+
 
     //Grab Transform from parent and apply to current
     public Matrix4f getWorldSpaceTransform(){
