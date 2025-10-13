@@ -13,13 +13,15 @@ public abstract class Object {
     private Object parent;
     private List<Object> children;
     protected UUID uuid;
+    private UUID gameId;
 
-    public Object(Matrix4f location, World w) {
+    public Object(Matrix4f location, World w, UUID gid) {
         parent = null;
         transform = location;
         uuid = UUID.randomUUID();
         children = new ArrayList<>();
         world = w;
+        gameId = gid;
     }
 
     public Object(Matrix4f location, World w, Object obj) {
@@ -61,7 +63,7 @@ public abstract class Object {
         return localtran;
     }
 
-    public abstract void teleport(Matrix4f trans);
+    public abstract void teleport(Matrix4f trans, World w);
 
     public void delete() {
         setParent(null);
@@ -70,15 +72,15 @@ public abstract class Object {
 
     public void update() {
         Matrix4f trans = getWorldSpaceTransform();
-        teleport(trans);
-        children.forEach(child -> child.update(trans));
+        teleport(trans, world);
+        children.forEach(child -> child.update(trans, world));
         //Pull info apply to this
     }
 
-    public void update(Matrix4f trans) {
-
-        teleport(trans);
-        children.forEach(child -> child.update(trans));
+    public void update(Matrix4f trans, World w) {
+        Matrix4f trans2 = getWorldSpaceTransform(trans);
+        teleport(trans2, w);
+        children.forEach(child -> child.update(trans2, w));
         //parent force updating this
     }
 

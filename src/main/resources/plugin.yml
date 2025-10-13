@@ -5,3 +5,8 @@ api-version: '1.21'
 prefix: BGE
 authors: [ mudkip989 ]
 description: A full Remake of Card Game Engine designed with more polish in mind
+commands:
+  boardgameengine:
+    usage: /<command>
+    description: Empty Text.
+    aliases: [bge]

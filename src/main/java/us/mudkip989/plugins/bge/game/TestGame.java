@@ -1,18 +1,28 @@
 package us.mudkip989.plugins.bge.game;
 
+import org.bukkit.*;
 import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
 import org.bukkit.scheduler.*;
+import org.joml.*;
 import us.mudkip989.plugins.bge.*;
+import us.mudkip989.plugins.bge.game.object.*;
+import us.mudkip989.plugins.bge.util.*;
 
 import java.util.*;
 
 public class TestGame extends Game{
 
     public ArrayList<Player> players = new ArrayList<>();
+    private ModelDisplay display1, display2;
 
-    //Rock Paper Scissors?
-    public TestGame() {
-        super();
+    // Test Environment
+    public TestGame(Matrix4f transform, World world) {
+        super(transform, world);
+        display1 = new ModelDisplay(TransformUtils.getTransform(new Location(world, 0, 0, 0)), world, uuid, new ItemStack(Material.COBBLESTONE));
+        display2 = new ModelDisplay(TransformUtils.getTransform(new Location(world, 0, 0, 0)), world, uuid, new ItemStack(Material.DIAMOND_BLOCK));
+
+        display1.
     }
 
 
@@ -23,7 +33,14 @@ public class TestGame extends Game{
         return new BukkitRunnable() {
             @Override
             public void run() {
-
+                // switch (input) {
+                // case "rock-rock":
+                //   [draw logic]
+                // case "rock-scissors":
+                //   [p1 win logic]
+                // case "rock-paper":
+                //   [p2 win logic]
+                // }
             }
         }.runTaskTimerAsynchronously(BGE.instance, 1, 1);
     }
