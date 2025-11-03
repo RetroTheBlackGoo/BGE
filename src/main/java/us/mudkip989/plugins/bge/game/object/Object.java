@@ -3,6 +3,7 @@ package us.mudkip989.plugins.bge.game.object;
 import org.bukkit.*;
 import org.bukkit.util.*;
 import org.joml.*;
+import us.mudkip989.plugins.bge.*;
 import us.mudkip989.plugins.bge.game.object.enums.*;
 
 import java.util.*;
@@ -22,9 +23,10 @@ public abstract class Object {
         children = new ArrayList<>();
         world = w;
         gameId = gid;
+        BGE.gameInstances.get(gid).objectTracker.put(uuid, this);
     }
 
-    public Object(Matrix4f location, World w, Object obj) {
+    public Object(Matrix4f location, World w, UUID gid, Object obj) {
         if (obj != null){
             parent = obj;
             parent.addChild(this);
@@ -33,6 +35,8 @@ public abstract class Object {
         uuid = UUID.randomUUID();
         children = new ArrayList<>();
         world = w;
+        gameId = gid;
+        BGE.gameInstances.get(gid).objectTracker.put(uuid, this);
     }
 
 

@@ -27,7 +27,7 @@ public class RotationTest extends Game{
         frame = new InteractionEntity(TransformUtils.getTransform(new Location(world, 0, 0, 0)), world, uuid, 1, 1);
         display2.setParent(display1);
         display1.setParent(frame);
-        frame.setTransform(new Matrix4f().scale(1).setTranslation(transform.getTranslation(new Vector3f())), world);
+        frame.setTransform(transform, world);
         frame.update();
     }
 
@@ -40,6 +40,8 @@ public class RotationTest extends Game{
             @Override
             public void run() {
                 //Rotation Test happens here.
+                display1.mulTransform(new Matrix4f().scale(1).setRotationYXZ(Math.toRadians(10), Math.toRadians(2), Math.toRadians(0)));
+                display1.update();
             }
         }.runTaskTimerAsynchronously(BGE.instance, 20, 1);
     }

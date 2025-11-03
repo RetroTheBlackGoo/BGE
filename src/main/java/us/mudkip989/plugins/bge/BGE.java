@@ -17,7 +17,7 @@ public final class BGE extends JavaPlugin {
     public static BGE instance;
     public static HashMap<Entity, Location> EntityTeleportQueue = new HashMap<>();
     private static HashMap<String, Class<? extends Game>> gameRegistry = new HashMap<>();
-    public static HashMap<UUID, ? extends Game> gameInstances = new HashMap<>();
+    public static HashMap<UUID, Game> gameInstances = new HashMap<>();
 
 
     @Override
