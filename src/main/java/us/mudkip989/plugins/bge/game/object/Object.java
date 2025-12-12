@@ -9,12 +9,13 @@ import us.mudkip989.plugins.bge.game.object.enums.*;
 import java.util.*;
 
 public abstract class Object {
-    private Matrix4f transform;
-    private World world;
+    public Matrix4f transform;
+    public World world;
     private Object parent;
     private List<Object> children;
     protected UUID uuid;
     private UUID gameId;
+    public List<String> tagList;
 
     public Object(Matrix4f location, World w, UUID gid) {
         parent = null;
