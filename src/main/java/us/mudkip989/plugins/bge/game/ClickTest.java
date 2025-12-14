@@ -36,6 +36,8 @@ public class ClickTest extends Game{
         button.setParent(display2);
         frame.setTransform(new Matrix4f().scale(1).setTranslation(transform.getTranslation(new Vector3f())), world);
         frame.update();
+
+        clickToggle = false;
     }
 
 
@@ -53,6 +55,14 @@ public class ClickTest extends Game{
 
     @Override
     public void ClickEvent(PlayerInteractEvent e) {
-
+        RaycastResult res = button.raycastToObject(e.getPlayer().getEyeLocation().toVector().toVector3f(), e.getPlayer().getEyeLocation().getDirection().toVector3f(), e.getPlayer().getWorld());
+        if(res.hit()){
+            clickToggle = !clickToggle;
+            if(clickToggle){
+                display2.setItemMaterial(new ItemStack(Material.GOLD_BLOCK));
+            }else {
+                display2.setItemMaterial(new ItemStack(Material.DIAMOND_BLOCK));
+            }
+        }
     }
 }

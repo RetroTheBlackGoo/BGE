@@ -67,10 +67,12 @@ public class BasicButton extends Object {
         float tmin = Math.max(Math.max(Math.min(t1, t2), Math.min(t3, t4)), Math.min(t5, t6));
         float tmax = Math.min(Math.min(Math.max(t1, t2), Math.max(t3, t4)), Math.max(t5, t6));
         float t = 0;
+        boolean success = true;
         // if tmax < 0, ray (line) is intersecting AABB, but the whole AABB is behind us
         if (tmax < 0)
         {
             t = tmax;
+            success = false;
         //            return false;
         }
 
@@ -78,18 +80,18 @@ public class BasicButton extends Object {
         if (tmin > tmax)
         {
             t = tmax;
+            success = false;
         //            return false;
         }
 
         t = tmin;
-        //        return true;
 
         //Use t for getting end location and distance
         Vector3f endPoint = pos.add(dir.mul(t, new Vector3f()), new Vector3f());
 
 
 
-        return new RaycastResult(endPoint, dir.mul(t, new Vector3f()).length());
+        return new RaycastResult(endPoint, dir.mul(t, new Vector3f()).length(), success);
     }
 
 }

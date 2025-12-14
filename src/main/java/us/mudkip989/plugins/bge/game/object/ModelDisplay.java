@@ -43,4 +43,8 @@ public class ModelDisplay extends Object{
         entity.setTransformationMatrix(temp.setTranslation(0, 0, 0));
 
     }
+
+    public void setItemMaterial(ItemStack item){
+        entity.setItemStack(item);
+    }
 }
