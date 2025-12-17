@@ -8,6 +8,7 @@ import org.bukkit.scheduler.*;
 import org.joml.*;
 import us.mudkip989.plugins.bge.Listeners.*;
 import us.mudkip989.plugins.bge.game.*;
+import us.mudkip989.plugins.bge.game.object.*;
 import us.mudkip989.plugins.bge.util.*;
 
 import java.util.*;
@@ -30,6 +31,7 @@ public final class BGE extends JavaPlugin {
         PM.registerEvents(new PassableEventListener(), this);
         registerGame("bge:rottest", RotationTest.class);
         registerGame("bge:clicktest", ClickTest.class);
+        registerGame("bge:hovertest", HoverTest.class);
         new BukkitRunnable() {
             @Override
             public void run() {

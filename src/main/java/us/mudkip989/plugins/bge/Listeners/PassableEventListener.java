@@ -15,7 +15,6 @@ public class PassableEventListener implements Listener {
         Entity ent = e.getRightClicked();
         Set<String> tags = ent.getScoreboardTags();
         UUID gameId = null;
-        System.out.println(tags);
         if(tags.contains("bge") && tags.contains("interaction")){
 
             for(String tag: tags){

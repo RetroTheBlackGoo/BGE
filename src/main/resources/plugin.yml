@@ -1,5 +1,5 @@
 name: BGE
-version: 'v0.0.1-1.21.6'
+version: '0.0.1-1.21.8'
 main: us.mudkip989.plugins.bge.BGE
 api-version: '1.21'
 prefix: BGE
