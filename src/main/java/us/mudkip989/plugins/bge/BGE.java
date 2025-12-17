@@ -8,6 +8,7 @@ import org.bukkit.scheduler.*;
 import org.joml.*;
 import us.mudkip989.plugins.bge.Listeners.*;
 import us.mudkip989.plugins.bge.game.*;
+import us.mudkip989.plugins.bge.game.builtin.*;
 import us.mudkip989.plugins.bge.game.object.*;
 import us.mudkip989.plugins.bge.util.*;
 

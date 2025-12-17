@@ -1,4 +1,4 @@
-package us.mudkip989.plugins.bge.game;
+package us.mudkip989.plugins.bge.game.builtin;
 
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -7,13 +7,14 @@ import org.bukkit.scheduler.*;
 import org.joml.*;
 import org.joml.Math;
 import us.mudkip989.plugins.bge.*;
+import us.mudkip989.plugins.bge.game.*;
 import us.mudkip989.plugins.bge.game.object.*;
 import us.mudkip989.plugins.bge.util.*;
 
 
 import java.util.*;
 
-public class RotationTest extends Game{
+public class RotationTest extends Game {
 
     public ArrayList<Player> players = new ArrayList<>();
     private ModelDisplay display1, display2;
