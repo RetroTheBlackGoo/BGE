@@ -35,6 +35,7 @@ public final class BGE extends JavaPlugin {
         registerGame("bge:rottest", RotationTest.class);
         registerGame("bge:clicktest", ClickTest.class);
         registerGame("bge:hovertest", HoverTest.class);
+        registerGame("bge:go", OthelloGo.class);
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -61,10 +62,11 @@ public final class BGE extends JavaPlugin {
         return gameRegistry.keySet().stream().toList();
     }
 
-    public boolean startGame(String id, Location loc) {
+    public boolean startGame(String id, Location loc, String options) {
         if(!getGameIds().contains(id)) return false;
         try {
-            gameRegistry.get(id).getDeclaredConstructor(Matrix4f.class, World.class, String.class).newInstance(TransformUtils.getTransform(loc), loc.getWorld(), "");
+            gameRegistry.get(id).getDeclaredConstructor(Matrix4f.class, World.class, String.class)
+                    .newInstance(TransformUtils.getTransform(loc), loc.getWorld(), options);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

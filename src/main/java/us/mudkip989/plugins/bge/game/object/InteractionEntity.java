@@ -38,4 +38,12 @@ public class InteractionEntity extends Object{
         });
 
     }
+
+    public void setHeight(float h){
+        entity.setInteractionHeight(h);
+    }
+
+    public void setWidth(float w){
+        entity.setInteractionWidth(w);
+    }
 }

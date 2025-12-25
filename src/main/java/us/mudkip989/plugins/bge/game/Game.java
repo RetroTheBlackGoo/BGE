@@ -21,9 +21,11 @@ public abstract class Game {
 
 
 
-    public Game(Matrix4f transform, World world, String options){
+    public Game(Matrix4f transform, World wrld, String options){
         uuid = UUID.randomUUID();
         task = runGameTask();
+        transformation = transform;
+        world = wrld;
         BGE.gameInstances.put(uuid, this);
     }
 

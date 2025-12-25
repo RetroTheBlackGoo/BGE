@@ -23,4 +23,9 @@ public class TransformUtils {
                 .setRotationYXZ(-Math.toRadians(loc.getYaw()), Math.toRadians(loc.getPitch()), 0);
     }
 
+    public static Matrix4f blankTransform(){
+
+        return new Matrix4f().setTranslation(0, 0, 0).setRotationYXZ(0, 0, 0).scale(1);
+    }
+
 }

@@ -23,7 +23,15 @@ public class CommandListener implements CommandExecutor {
 
         switch (args[0]){
             case "create" -> {
-                if(BGE.instance.startGame(args[1], p.getLocation())){
+                List<String> optionList = new ArrayList<>(List.of(args));
+                String options = "";
+                if(optionList.size() > 2){
+                    optionList.removeFirst();
+                    optionList.removeFirst();
+                    options = String.join(" ", optionList);
+                }
+
+                if(BGE.instance.startGame(args[1], p.getLocation(), options)){
                     Bukkit.broadcast(Component.text("Done"));
                 }
             }
