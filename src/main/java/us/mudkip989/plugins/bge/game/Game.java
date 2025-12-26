@@ -41,8 +41,11 @@ public abstract class Game {
     }
 
     public void delete(){
-        task.cancel();
-        for(Object obj: objectTracker.values()){
+        if(task != null) {
+            task.cancel();
+        }
+        List<Object> objList = objectTracker.values().stream().toList();
+        for(Object obj: objList){
             obj.delete();
         }
     }

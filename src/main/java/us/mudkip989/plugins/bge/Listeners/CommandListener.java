@@ -32,11 +32,22 @@ public class CommandListener implements CommandExecutor {
                 }
 
                 if(BGE.instance.startGame(args[1], p.getLocation(), options)){
-                    Bukkit.broadcast(Component.text("Done"));
+                    p.sendMessage(Component.text("Done"));
                 }
             }
             case "about" -> {
                 p.sendMessage("Test");
+            }
+            case "delete" -> {
+                UUID gid = UUID.fromString(args[1]);
+                if(BGE.gameInstances.containsKey(gid)){
+                    BGE.gameInstances.get(gid).delete();
+                    BGE.gameInstances.remove(gid);
+                    p.sendMessage(Component.text("Done"));
+                }else{
+                    p.sendMessage(Component.text("No Game Found"));
+                }
+
             }
 
         }

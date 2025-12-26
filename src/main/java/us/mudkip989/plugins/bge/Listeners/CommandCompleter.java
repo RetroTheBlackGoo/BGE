@@ -13,7 +13,7 @@ public class CommandCompleter implements TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
         List<String> returns = new ArrayList<>();
         if(strings.length == 1){
-            returns = new ArrayList<>(Arrays.asList("create", "about"));
+            returns = new ArrayList<>(Arrays.asList("create", "about", "delete"));
         }
         switch (strings[0]){
             case "create" -> {
@@ -22,6 +22,15 @@ public class CommandCompleter implements TabCompleter {
                 }
             }
             case "about" -> {
+            }
+            case "delete" -> {
+                if(strings.length == 2) {
+                    List<UUID> list = BGE.gameInstances.keySet().stream().filter(uuid -> uuid.toString().startsWith(strings[1])).toList();
+                    returns = new ArrayList<>();
+                    for(UUID uid: list){
+                        returns.add(uid.toString());
+                    }
+                }
             }
 
         }
