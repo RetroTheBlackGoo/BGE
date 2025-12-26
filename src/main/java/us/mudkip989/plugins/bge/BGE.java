@@ -1,5 +1,6 @@
 package us.mudkip989.plugins.bge;
 
+import com.destroystokyo.paper.utils.PaperPluginLogger;
 import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.*;
@@ -15,27 +16,32 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public final class BGE extends JavaPlugin {
-
+    //public final PaperPluginLogger logger = (PaperPluginLogger) PaperPluginLogger.getLogger(String.valueOf(this));
+    public static Integer BGEAPIVersion = 1;
     public static BGE instance;
-//    public static HashMap<Entity, Location> EntityTeleportQueue = new HashMap<>();
+
     private static HashMap<String, Class<? extends Game>> gameRegistry = new HashMap<>();
     public static HashMap<UUID, Game> gameInstances = new HashMap<>();
     public static Queue<Runnable> mainQueue = new ConcurrentLinkedQueue<>();
 
-
-
     @Override
     public void onEnable() {
         // Plugin startup logic
+        saveDefaultConfig();                // Non-functional, testing in external project
+
+        // ^ Starter for configs ^
+
         instance = this;
         PluginManager PM = Bukkit.getPluginManager();
         this.getCommand("boardgameengine").setExecutor(new CommandListener());
         this.getCommand("boardgameengine").setTabCompleter(new CommandCompleter());
         PM.registerEvents(new PassableEventListener(), this);
+
         registerGame("bge:rottest", RotationTest.class);
         registerGame("bge:clicktest", ClickTest.class);
         registerGame("bge:hovertest", HoverTest.class);
-        registerGame("bge:othello", Othello.class);
+        //registerGame("bge:othello", Othello.class);
+
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -70,7 +76,6 @@ public final class BGE extends JavaPlugin {
                 }
             }
         }.runTaskTimer(BGE.instance, 1, 1);
-
     }
 
 
@@ -78,7 +83,6 @@ public final class BGE extends JavaPlugin {
     public void registerGame(String id, Class<? extends Game> game){
         gameRegistry.put(id, game);
     }
-
     public List<String> getGameIds(){
         return gameRegistry.keySet().stream().toList();
     }
