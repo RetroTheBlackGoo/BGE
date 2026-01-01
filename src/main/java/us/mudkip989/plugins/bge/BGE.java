@@ -118,9 +118,9 @@ public final class BGE extends JavaPlugin {
 
 
 
-    public void registerGame(String id, Class<? extends Game> game){
+    public static void registerGame(String id, Class<? extends Game> game){
         gameRegistry.put(id, game);
-        logger.fine("Registered game ID: " + id);
+        BGE.instance.logger.fine("Registered game ID: " + id);
     }
     public List<String> getGameIds(){
         return gameRegistry.keySet().stream().toList();
