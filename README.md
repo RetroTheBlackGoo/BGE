@@ -40,6 +40,7 @@ Currently, there are no existing addons as this plugin has only been made public
   - Pause the game loop whenever there are no players nearby. This can allow for a game to continue running in a reduced state until players are close enough to interact.
 - Config File
   - While there is technically already a config file, it serves no purpose at this moment as my main focus lately has been getting something that works.
+- Better Command Structure
 
 # How Can I Make A Game?
 
@@ -47,9 +48,9 @@ Currently, there are no existing addons as this plugin has only been made public
 
 Any Editor is fine as long as it supports Java 21 and compiling.
 
-2. ### Add the plugin dependency
+2. ### Add the plugin and papermc dependencies
 
-There is no Maven Repository at this time, so you will have to add it the old-fashioned way. For best results, Always use the latest plugin Jar as there is it serves as the API itself.
+There is no Maven Repository at this time, so you will have to add the jar manually. For best results, Always use the latest plugin Jar as it serves as the API itself.
 You will also need to include Paper as another dependency as the plugin still uses Paper in the Game and Object classes.
 
 3. ### Create a new class extending `us.mudkip989.plugins.bge.api.BGEAddon`
@@ -58,11 +59,13 @@ This is how you will initialize the addon. Without this, BGE will not be able to
 
 4. ### Create a new class extending `us.mudkip989.plugins.bge.game.Game`
 
-This is your Game itself. You can do whatever you want in this file. See the builtin examples for how to use.
+This is your Game itself. You can do whatever you want in this file. Addon Examples Coming Soon.
 
 5. ### Register your Game/s in your Addon class
 
 Remember to run `BGE.registerGame(String id, Class<Game> game);` in the `onAddonLoad` function so your games can be used. Failure to do so will result in the Games in your addon being unavailable.
+
+This might change in the future.
 
 6. ### Compile and test
 
@@ -71,4 +74,4 @@ Once you are ready to test, you can compile your project and add it to the addon
 
 # Contributing
 
-This project is open source. You are free to privately modify the plugin to your wishes. If, however, you wish to help the main plugin out, you can make a Pull Request containing your edits, describing what it does and why you think I should add it to the main plugin. I will leave credits for each pull request in the commit that contains the change (and maybe in the code comments).
+This project is open source. You are free to privately modify the plugin to your wishes. If, however, you wish to help the main plugin out, you can make a Pull Request.
