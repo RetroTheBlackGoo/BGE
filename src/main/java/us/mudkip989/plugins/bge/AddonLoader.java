@@ -1,6 +1,7 @@
-package us.mudkip989.plugins.bge.api;
+package us.mudkip989.plugins.bge;
 
-import us.mudkip989.plugins.bge.*;
+import us.mudkip989.plugins.bge.api.BGEAddon;
+import us.mudkip989.plugins.bge.game.Game;
 
 import java.io.*;
 import java.lang.reflect.*;
@@ -10,15 +11,16 @@ import java.util.*;
 import java.util.jar.*;
 import java.util.logging.*;
 
-public class Loader {
-
-
+public class AddonLoader {
     private List<BGEAddon> addons;
-
     private File addonDir;
+    private HashMap<String, HashMap<String, Class<? extends Game>>> addonGames = new HashMap<>();
 
+    public void validateGames() {
 
-    public Loader(){
+    }
+
+    public AddonLoader(){
         addons = new ArrayList<>();
 
         addonDir = new File(BGE.instance.getDataFolder().getAbsolutePath() + File.separator + "addons");
@@ -37,9 +39,8 @@ public class Loader {
 
     }
 
-    public void loadAddons(){
+    void loadAddons(){
         addons = new ArrayList<>();
-
 
         //fetching addon jars
         File[] files = addonDir.listFiles((dir, name) -> name.endsWith(".jar"));
@@ -57,7 +58,7 @@ public class Loader {
 
     private void loadAddon(File file){
 
-        try{
+        try {
 
             URLClassLoader classLoader = new URLClassLoader(
                     new URL[]{file.toURI().toURL()},
@@ -74,7 +75,7 @@ public class Loader {
                 return;
             }
 
-            try{
+            try {
                 Field classLoaderField = BGEAddon.class.getDeclaredField("classLoader");
                 classLoaderField.setAccessible(true);
                 Field addonFileField = BGEAddon.class.getDeclaredField("addonFile");
